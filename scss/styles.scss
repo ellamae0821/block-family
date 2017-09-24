@@ -1,24 +1,73 @@
 // Resets, Clearfix, etc
+@import 'partials/reset';
+@import 'partials/clearfix';
 
 // Variables
+$dark-color: #50394c;
+$light-color: #ffcc5c;
+$bright-color: #ff00ff;
+$padding: 20px;
+$changeColor: #ffff99;
 
 // Media Query Ranges
 
-// Mixins
-
-// Styles
 body{
-  background-color: orange;
+  background-color: $light-color;
   text-align: center;
-  color: #EEE;
+  color: $bright-color;  //#EEE;
 }
 
+@media screen and (min-width: 600px) {
+    .block_family {
+      max-width: 500px;
+      li:nth-of-type(even){
+        background-color: $changeColor;
+        color: $bright-color;
+      }
+    }
+    .block_family li{
+      width: 40%;
+    }
+}
+@media screen and (min-width: 900px) {
+    .block_family {
+      max-width: 800px;
+      li:nth-of-type(3n+2){
+        background-color: $changeColor;
+        color: $bright-color;
+      }
+      li:nth-of-type(3n+1){
+        background-color: $dark-color;
+        color: $light-color;
+      }
+      li:nth-of-type(3n+3){
+        background-color: $dark-color;
+        color: $light-color;
+      }
+    }
+    .block_family li{
+      width: 25%;
+    }
+}
+// Mixins
+
+@mixin block_font($block_font_size, $block_font_color){
+  font-size: $block_font_size;
+  color: $block_font_color;
+}
+
+// Styles
+
+
 h1, h2, h3, h4{
-  font-family: "Helvetica Neue", "Helvetica", sans-serif;
+  font-family: "Courier New", "Helvetica", sans-serif;
 }
 
 h1{
-  padding: 20px;
+  padding: $padding;
+  color: #50394c;
+  font-size: 25px;
+  font-weight: bold;
 }
 
 h2{
@@ -27,12 +76,14 @@ h2{
 
 
 .block_family{
-  max-width:350px;
+  //max-width: 350px;
   margin:auto;
+  @include block_font(30px,#ffcc5c);
 }
 
 .block_family li{
-  background-color: #222;
+  background-color: $dark-color; //#222;
   margin-bottom: 20px;
-  padding: 20px;
+  padding: $padding;
+  display: inline-block;
 }
